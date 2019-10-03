@@ -126,21 +126,22 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         locationOffsetView.setText(locationOffset);
 
         // Create a new Date object from the time in milliseconds of the earthquake
-        Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
+//        Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
+        String dateTimePublication = currentEarthquake.getDateTimePublication();
 
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         // Format the date string (i.e. "Mar 3, 1984")
-        String formattedDate = formatDate(dateObject);
+//        String formattedDate = formatDate(dateObject);
         // Display the date of the current earthquake in that TextView
-        dateView.setText(formattedDate);
+//        dateView.setText(formattedDate);
 
         // Find the TextView with view ID time
         TextView timeView = (TextView) listItemView.findViewById(R.id.time);
         // Format the time string (i.e. "4:30PM")
-        String formattedTime = formatTime(dateObject);
+//        String formattedTime = formatTime(dateObject);
         // Display the time of the current earthquake in that TextView
-        timeView.setText(formattedTime);
+        timeView.setText(dateTimePublication);
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;

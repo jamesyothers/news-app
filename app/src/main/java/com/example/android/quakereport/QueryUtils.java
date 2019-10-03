@@ -191,9 +191,8 @@ public final class QueryUtils {
                 // Extract the value for the key called "webtitle"
                 String articleTitle = currentStory.getString("webTitle");
 
-                // Extract the value for the key called "time"
-//                long time = currentStory.getLong("time");
-                long time = 1;
+                // Extract the value for the key called "webPublicationDate"
+                String dateTimePublication = currentStory.getString("webPublicationDate");
 
                 // Extract the value for the key called "webUrl"
                 String url = currentStory.getString("webUrl");
@@ -202,7 +201,7 @@ public final class QueryUtils {
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Earthquake earthquake = new Earthquake(magnitude, articleTitle, time, url);
+                Earthquake earthquake = new Earthquake(magnitude, articleTitle, dateTimePublication, url);
 
                 // Add the new {@link Earthquake} to the list of stories.
                 stories.add(earthquake);

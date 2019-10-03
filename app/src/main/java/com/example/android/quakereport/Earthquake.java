@@ -27,7 +27,7 @@ public class Earthquake {
     private String mLocation;
 
     /** Time of the earthquake */
-    private long mTimeInMilliseconds;
+    private String mDateTimePublication;
 
     /** Website URL of the earthquake */
     private String mUrl;
@@ -37,14 +37,14 @@ public class Earthquake {
      *
      * @param magnitude is the magnitude (size) of the earthquake
      * @param location is the location where the earthquake happened
-     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
+     * @param dateTimePublication is the time in milliseconds (from the Epoch) when the
      *                           earthquake happened
      * @param url is the website URL to find more details about the earthquake
      */
-    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
+    public Earthquake(double magnitude, String location, String dateTimePublication, String url) {
         mMagnitude = magnitude;
         mLocation = location;
-        mTimeInMilliseconds = timeInMilliseconds;
+        mDateTimePublication = dateTimePublication;
         mUrl = url;
     }
 
@@ -65,8 +65,8 @@ public class Earthquake {
     /**
      * Returns the time of the earthquake.
      */
-    public long getTimeInMilliseconds() {
-        return mTimeInMilliseconds;
+    public String getDateTimePublication() {
+        return mDateTimePublication;
     }
 
     /**
