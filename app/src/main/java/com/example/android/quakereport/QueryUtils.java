@@ -156,8 +156,8 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding earthquakes to
-        List<Earthquake> earthquakes = new ArrayList<>();
+        // Create an empty ArrayList that we can start adding stories to
+        List<Earthquake> stories = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -167,39 +167,45 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
 
+
             // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or earthquakes).
-            JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
+            // which represents a list of features (or stories).
+            JSONObject responseObject = baseJsonResponse.getJSONObject("response");
+            JSONArray responseArray = responseObject.getJSONArray("results");
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < earthquakeArray.length(); i++) {
+            for (int i = 0; i < responseArray.length(); i++) {
 
-                // Get a single earthquake at position i within the list of earthquakes
-                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                // Get a single earthquake at position i within the list of stories
+                JSONObject currentStory = responseArray.getJSONObject(i);
 
                 // For a given earthquake, extract the JSONObject associated with the
                 // key called "properties", which represents a list of all properties
                 // for that earthquake.
-                JSONObject properties = currentEarthquake.getJSONObject("properties");
+//                JSONObject properties = currentEarthquake.getJSONObject("properties");
 
                 // Extract the value for the key called "mag"
-                double magnitude = properties.getDouble("mag");
+//                double magnitude = currentStory.getDouble("mag");
+                double magnitude = 1;
 
-                // Extract the value for the key called "place"
-                String location = properties.getString("place");
+                // Extract the value for the key called "webtitle"
+                String articleTitle = currentStory.getString("webTitle");
 
                 // Extract the value for the key called "time"
-                long time = properties.getLong("time");
+//                long time = currentStory.getLong("time");
+                long time = 1;
 
-                // Extract the value for the key called "url"
-                String url = properties.getString("url");
+                // Extract the value for the key called "webUrl"
+                String url = currentStory.getString("webUrl");
+
+                // author and date published
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Earthquake earthquake = new Earthquake(magnitude, location, time, url);
+                Earthquake earthquake = new Earthquake(magnitude, articleTitle, time, url);
 
-                // Add the new {@link Earthquake} to the list of earthquakes.
-                earthquakes.add(earthquake);
+                // Add the new {@link Earthquake} to the list of stories.
+                stories.add(earthquake);
             }
 
         } catch (JSONException e) {
@@ -209,8 +215,8 @@ public final class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
-        // Return the list of earthquakes
-        return earthquakes;
+        // Return the list of stories
+        return stories;
     }
 
 }
