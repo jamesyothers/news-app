@@ -1,1 +1,1 @@
-# news-app
+# just-java
