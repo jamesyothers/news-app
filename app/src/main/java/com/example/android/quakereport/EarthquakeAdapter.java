@@ -72,11 +72,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         Earthquake currentEarthquake = getItem(position);
 
         // Find the TextView with view ID magnitude
-//        TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
+        TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
         // Format the magnitude to show 1 decimal place
-//        String formattedMagnitude = formatMagnitude(currentEarthquake.getMagnitude());
+//        String sectionName = formatMagnitude(currentEarthquake.getSectionName());
+        String sectionName = currentEarthquake.getSectionName();
         // Display the magnitude of the current earthquake in that TextView
-//        magnitudeView.setText(formattedMagnitude);
+        magnitudeView.setText(sectionName);
 
         // Set the proper background color on the magnitude circle.
         // Fetch the background from the TextView, which is a GradientDrawable.

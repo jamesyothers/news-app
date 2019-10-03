@@ -184,10 +184,6 @@ public final class QueryUtils {
                 // for that earthquake.
 //                JSONObject properties = currentEarthquake.getJSONObject("properties");
 
-                // Extract the value for the key called "mag"
-//                double magnitude = currentStory.getDouble("mag");
-                double magnitude = 1;
-
                 // Extract the value for the key called "webtitle"
                 String articleTitle = currentStory.getString("webTitle");
 
@@ -197,11 +193,12 @@ public final class QueryUtils {
                 // Extract the value for the key called "webUrl"
                 String url = currentStory.getString("webUrl");
 
-                // author and date published
+                // Extract the value for the key called "sectionName"
+                String sectionName = currentStory.getString("sectionName");
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Earthquake earthquake = new Earthquake(magnitude, articleTitle, dateTimePublication, url);
+                Earthquake earthquake = new Earthquake(sectionName, articleTitle, dateTimePublication, url);
 
                 // Add the new {@link Earthquake} to the list of stories.
                 stories.add(earthquake);
