@@ -16,9 +16,9 @@
 package com.example.android.quakereport;
 
 /**
- * An {@link Earthquake} object contains information related to a single earthquake.
+ * An {@link Article} object contains information related to a single earthquake.
  */
-public class Earthquake {
+public class Article {
 
     /** Magnitude of the earthquake */
     private String mSectionName;
@@ -33,15 +33,9 @@ public class Earthquake {
     private String mUrl;
 
     /**
-     * Constructs a new {@link Earthquake} object.
-     *
-     * @param sectionName is the magnitude (size) of the earthquake
-     * @param location is the location where the earthquake happened
-     * @param dateTimePublication is the time in milliseconds (from the Epoch) when the
-     *                           earthquake happened
-     * @param url is the website URL to find more details about the earthquake
+     * Constructs a new {@link Article} object.
      */
-    public Earthquake(String sectionName, String location, String dateTimePublication, String url) {
+    public Article(String sectionName, String location, String dateTimePublication, String url) {
         mSectionName = sectionName;
         mLocation = location;
         mDateTimePublication = dateTimePublication;
@@ -49,7 +43,7 @@ public class Earthquake {
     }
 
     /**
-     * Returns the magnitude of the earthquake.
+     * Returns the section of the article.
      */
     public String getSectionName() {
         return mSectionName;
@@ -63,14 +57,14 @@ public class Earthquake {
     }
 
     /**
-     * Returns the time of the earthquake.
+     * Returns the dateTime of the article.
      */
     public String getDateTimePublication() {
         return mDateTimePublication;
     }
 
     /**
-     * Returns the website URL to find more information about the earthquake.
+     * Returns the website URL to find more information about the article.
      */
     public String getUrl() {
         return mUrl;
