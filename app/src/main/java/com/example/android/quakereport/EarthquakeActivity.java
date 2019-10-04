@@ -43,10 +43,10 @@ public class EarthquakeActivity extends AppCompatActivity
     private static final String LOG_TAG = EarthquakeActivity.class.getName();
 
     /** URL for earthquake data from the USGS dataset */
-    private static final String USGS_REQUEST_URL =
+    private static final String GUARDIAN_REQUEST_URL =
 //            "https://earthquake.usgs.gov/fdsnws/event/1/query";
-            "https://content.guardianapis.com/search?api-key=test";
-
+//            "https://content.guardianapis.com/search?api-key=test";
+            "https://content.guardianapis.com/search";
     /**
      * Constant value for the earthquake loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
@@ -161,15 +161,12 @@ public class EarthquakeActivity extends AppCompatActivity
                 getString(R.string.settings_order_by_default)
         );
 
-        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
-//        Uri.Builder uriBuilder = baseUri.buildUpon();
-//
-//        uriBuilder.appendQueryParameter("format", "geojson");
-//        uriBuilder.appendQueryParameter("limit", "10");
-//        uriBuilder.appendQueryParameter("minmag", minMagnitude);
-//        uriBuilder.appendQueryParameter("orderby", orderBy);
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        uriBuilder.appendQueryParameter("section", "technology");
+        uriBuilder.appendQueryParameter("api-key", "test");
 
-        return new EarthquakeLoader(this, baseUri.toString());
+        return new EarthquakeLoader(this, uriBuilder.toString());
     }
 
     @Override
