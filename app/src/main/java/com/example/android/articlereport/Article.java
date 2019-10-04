@@ -23,8 +23,8 @@ public class Article {
     /** Magnitude of the article */
     private String mSectionName;
 
-    /** Location of the article */
-    private String mLocation;
+    /** Title of the article */
+    private String mTitle;
 
     /** Time of the article */
     private String mDateTimePublication;
@@ -35,9 +35,9 @@ public class Article {
     /**
      * Constructs a new {@link Article} object.
      */
-    public Article(String sectionName, String location, String dateTimePublication, String url) {
+    public Article(String sectionName, String title, String dateTimePublication, String url) {
         mSectionName = sectionName;
-        mLocation = location;
+        mTitle= title;
         mDateTimePublication = dateTimePublication;
         mUrl = url;
     }
@@ -50,11 +50,9 @@ public class Article {
     }
 
     /**
-     * Returns the location of the article.
+     * Returns the title of the article.
      */
-    public String getLocation() {
-        return mLocation;
-    }
+    public String getTitle() { return mTitle; }
 
     /**
      * Returns the dateTime of the article.

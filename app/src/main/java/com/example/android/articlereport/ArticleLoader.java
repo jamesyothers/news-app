@@ -26,9 +26,6 @@ import java.util.List;
  */
 public class ArticleLoader extends AsyncTaskLoader<List<com.example.android.articlereport.Article>> {
 
-    /** Tag for log messages */
-    private static final String LOG_TAG = ArticleLoader.class.getName();
-
     /** Query URL */
     private String mUrl;
 
@@ -58,7 +55,7 @@ public class ArticleLoader extends AsyncTaskLoader<List<com.example.android.arti
         }
 
         // Perform the network request, parse the response, and extract a list of articles.
-        List<com.example.android.articlereport.Article> articles = com.example.android.articlereport.QueryUtils.fetcharticleData(mUrl);
+        List<com.example.android.articlereport.Article> articles = com.example.android.articlereport.QueryUtils.fetchArticleData(mUrl);
         return articles;
     }
 }

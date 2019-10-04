@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving article data from USGS.
+ * Helper methods related to requesting and receiving article data from the Guardian.
  */
 public final class QueryUtils {
 
@@ -50,9 +50,9 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the USGS dataset and return a list of {@link Article} objects.
+     * Query the Guardian dataset and return a list of {@link Article} objects.
      */
-    public static List<Article> fetcharticleData(String requestUrl) {
+    public static List<Article> fetchArticleData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -168,8 +168,8 @@ public final class QueryUtils {
             JSONObject baseJsonResponse = new JSONObject(articleJSON);
 
 
-            // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or stories).
+            // Extract the JSONArray associated with the key called "results",
+            // which represents a list of articles.
             JSONObject responseObject = baseJsonResponse.getJSONObject("response");
             JSONArray responseArray = responseObject.getJSONArray("results");
 
@@ -178,11 +178,6 @@ public final class QueryUtils {
 
                 // Get a single article at position i within the list of stories
                 JSONObject currentStory = responseArray.getJSONObject(i);
-
-                // For a given article, extract the JSONObject associated with the
-                // key called "properties", which represents a list of all properties
-                // for that article.
-//                JSONObject properties = currentarticle.getJSONObject("properties");
 
                 // Extract the value for the key called "webtitle"
                 String articleTitle = currentStory.getString("webTitle");
@@ -196,7 +191,7 @@ public final class QueryUtils {
                 // Extract the value for the key called "sectionName"
                 String sectionName = currentStory.getString("sectionName");
 
-                // Create a new {@link article} object with the magnitude, location, time,
+                // Create a new {@link article} object with the section name, title, date/time,
                 // and url from the JSON response.
                 Article article = new Article(sectionName, articleTitle, dateTimePublication, url);
 
