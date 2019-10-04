@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.quakereport;
+package com.example.android.articlereport;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving earthquake data from USGS.
+ * Helper methods related to requesting and receiving article data from USGS.
  */
 public final class QueryUtils {
 
@@ -52,7 +52,7 @@ public final class QueryUtils {
     /**
      * Query the USGS dataset and return a list of {@link Article} objects.
      */
-    public static List<Article> fetchEarthquakeData(String requestUrl) {
+    public static List<Article> fetcharticleData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -64,10 +64,10 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        // Extract relevant fields from the JSON response and create a list of {@link article}s
         List<Article> articles = extractFeatureFromJson(jsonResponse);
 
-        // Return the list of {@link Earthquake}s
+        // Return the list of {@link article}s
         return articles;
     }
 
@@ -113,7 +113,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the article JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -150,9 +150,9 @@ public final class QueryUtils {
      * Return a list of {@link Article} objects that has been built up from
      * parsing the given JSON response.
      */
-    private static List<Article> extractFeatureFromJson(String earthquakeJSON) {
+    private static List<Article> extractFeatureFromJson(String articleJSON) {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(earthquakeJSON)) {
+        if (TextUtils.isEmpty(articleJSON)) {
             return null;
         }
 
@@ -165,7 +165,7 @@ public final class QueryUtils {
         try {
 
             // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
+            JSONObject baseJsonResponse = new JSONObject(articleJSON);
 
 
             // Extract the JSONArray associated with the key called "features",
@@ -173,16 +173,16 @@ public final class QueryUtils {
             JSONObject responseObject = baseJsonResponse.getJSONObject("response");
             JSONArray responseArray = responseObject.getJSONArray("results");
 
-            // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
+            // For each article in the articleArray, create an {@link article} object
             for (int i = 0; i < responseArray.length(); i++) {
 
-                // Get a single earthquake at position i within the list of stories
+                // Get a single article at position i within the list of stories
                 JSONObject currentStory = responseArray.getJSONObject(i);
 
-                // For a given earthquake, extract the JSONObject associated with the
+                // For a given article, extract the JSONObject associated with the
                 // key called "properties", which represents a list of all properties
-                // for that earthquake.
-//                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                // for that article.
+//                JSONObject properties = currentarticle.getJSONObject("properties");
 
                 // Extract the value for the key called "webtitle"
                 String articleTitle = currentStory.getString("webTitle");
@@ -196,19 +196,19 @@ public final class QueryUtils {
                 // Extract the value for the key called "sectionName"
                 String sectionName = currentStory.getString("sectionName");
 
-                // Create a new {@link Earthquake} object with the magnitude, location, time,
+                // Create a new {@link article} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Article earthquake = new Article(sectionName, articleTitle, dateTimePublication, url);
+                Article article = new Article(sectionName, articleTitle, dateTimePublication, url);
 
-                // Add the new {@link Earthquake} to the list of stories.
-                stories.add(earthquake);
+                // Add the new {@link article} to the list of stories.
+                stories.add(article);
             }
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the article JSON results", e);
         }
 
         // Return the list of stories

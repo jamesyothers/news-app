@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.quakereport;
+package com.example.android.articlereport;
 
 /**
- * An {@link Article} object contains information related to a single earthquake.
+ * An {@link Article} object contains information related to a single article.
  */
 public class Article {
 
-    /** Magnitude of the earthquake */
+    /** Magnitude of the article */
     private String mSectionName;
 
-    /** Location of the earthquake */
+    /** Location of the article */
     private String mLocation;
 
-    /** Time of the earthquake */
+    /** Time of the article */
     private String mDateTimePublication;
 
-    /** Website URL of the earthquake */
+    /** Website URL of the article */
     private String mUrl;
 
     /**
@@ -50,7 +50,7 @@ public class Article {
     }
 
     /**
-     * Returns the location of the earthquake.
+     * Returns the location of the article.
      */
     public String getLocation() {
         return mLocation;

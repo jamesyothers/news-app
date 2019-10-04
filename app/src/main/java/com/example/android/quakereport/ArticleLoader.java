@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.quakereport;
+package com.example.android.articlereport;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -21,10 +21,10 @@ import android.content.Context;
 import java.util.List;
 
 /**
- * Loads a list of earthquakes by using an AsyncTask to perform the
+ * Loads a list of articles by using an AsyncTask to perform the
  * network request to the given URL.
  */
-public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
+public class ArticleLoader extends AsyncTaskLoader<List<com.example.android.articlereport.Article>> {
 
     /** Tag for log messages */
     private static final String LOG_TAG = ArticleLoader.class.getName();
@@ -52,13 +52,13 @@ public class ArticleLoader extends AsyncTaskLoader<List<Article>> {
      * This is on a background thread.
      */
     @Override
-    public List<Article> loadInBackground() {
+    public List<com.example.android.articlereport.Article> loadInBackground() {
         if (mUrl == null) {
             return null;
         }
 
-        // Perform the network request, parse the response, and extract a list of earthquakes.
-        List<Article> earthquakes = QueryUtils.fetchEarthquakeData(mUrl);
-        return earthquakes;
+        // Perform the network request, parse the response, and extract a list of articles.
+        List<com.example.android.articlereport.Article> articles = com.example.android.articlereport.QueryUtils.fetcharticleData(mUrl);
+        return articles;
     }
 }

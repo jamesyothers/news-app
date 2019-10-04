@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.quakereport;
+package com.example.android.articlereport;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -47,8 +47,8 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
     }
 
     /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
+     * Returns a list item view that displays information about the article at the given position
+     * in the list of articles.
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -60,7 +60,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
                     R.layout.article_list_item, parent, false);
         }
 
-        // Find the earthquake at the given position in the list of earthquakes
+        // Find the article at the given position in the list of articles
         Article currentArticle = getItem(position);
 
         // Find the TextView with view ID article section
@@ -68,18 +68,18 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         // Format the magnitude to show 1 decimal place
 //        String sectionName = formatMagnitude(currentArticle.getSectionName());
         String sectionName = currentArticle.getSectionName();
-        // Display the magnitude of the current earthquake in that TextView
+        // Display the magnitude of the current article in that TextView
         articleSectionView.setText(sectionName);
 
         // Set the proper background color on the magnitude circle.
         // Fetch the background from the TextView, which is a GradientDrawable.
 //        GradientDrawable magnitudeCircle = (GradientDrawable) articleSectionView.getBackground();
-        // Get the appropriate background color based on the current earthquake magnitude
+        // Get the appropriate background color based on the current article magnitude
 //        int magnitudeColor = getMagnitudeColor(currentArticle.getMagnitude());
         // Set the color on the magnitude circle
 //        magnitudeCircle.setColor(magnitudeColor);
 
-        // Get the original location string from the Earthquake object,
+        // Get the original location string from the article object,
         // which can be in the format of "5km N of Cairo, Egypt" or "Pacific-Antarctic Ridge".
         String originalLocation = currentArticle.getLocation();
 
@@ -110,15 +110,15 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 
         // Find the TextView with view ID location
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
-        // Display the location of the current earthquake in that TextView
+        // Display the location of the current article in that TextView
         primaryLocationView.setText(primaryLocation);
 
         // Find the TextView with view ID location offset
 //        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset);
-        // Display the location offset of the current earthquake in that TextView
+        // Display the location offset of the current article in that TextView
 //        locationOffsetView.setText(locationOffset);
 
-        // Create a new Date object from the time in milliseconds of the earthquake
+        // Create a new Date object from the time in milliseconds of the article
 //        Date dateObject = new Date(currentArticle.getTimeInMilliseconds());
         String dateTimePublication = currentArticle.getDateTimePublication();
 
@@ -128,14 +128,14 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         // Format the date string (i.e. "Mar 3, 1984")
 //        String formattedDate = formatDate(dateObject);
-        // Display the date of the current earthquake in that TextView
+        // Display the date of the current article in that TextView
         dateView.setText(datePublication);
 
         // Find the TextView with view ID time
         TextView timeView = (TextView) listItemView.findViewById(R.id.time);
         // Format the time string (i.e. "4:30PM")
 //        String formattedTime = formatTime(dateObject);
-        // Display the time of the current earthquake in that TextView
+        // Display the time of the current article in that TextView
 //        timeView.setText(dateTimePublication);
 
         // Return the list item view that is now showing the appropriate data
@@ -143,9 +143,9 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
     }
 
 //    /**
-//     * Return the color for the magnitude circle based on the intensity of the earthquake.
+//     * Return the color for the magnitude circle based on the intensity of the article.
 //     *
-//     * @param magnitude of the earthquake
+//     * @param magnitude of the article
 //     */
 //    private int getMagnitudeColor(double magnitude) {
 //        int magnitudeColorResourceId;
